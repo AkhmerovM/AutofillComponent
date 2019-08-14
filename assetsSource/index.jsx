@@ -53,8 +53,9 @@ class Autofill extends Component {
     };
     renderItem = (item, i) => {
         const {value, selectedId} = this.state;
+        const {classNameItem=''} = this.props;
         return (
-            <div key={i} className={`autofill__select-item ${selectedId === i ? 'autofill__select-item_active': '' }`} onClick={this.handleSelectItemClick}>
+            <div key={i} className={`autofill__select-item ${classNameItem} ${selectedId === i ? 'autofill__select-item_active': '' }`} onClick={this.handleSelectItemClick}>
                 <strong>{item.substr(0, value.length)}</strong>{item.substr(value.length, item.length - value.length)}
             </div>
         )
@@ -121,11 +122,11 @@ class Autofill extends Component {
         document.removeEventListener('click');
     };
     render() {
-        const {value, options} = this.state;
+        const {value='', options=[], className='', placeholder='', isDisabled=false, name=''} = this.state;
         return (
-            <div className='autofill' ref={this.autofill}>
+            <div className={`autofill ${className} ${isDisabled ? 'autofill__disabled': ''}`}  ref={this.autofill}>
                 <div className="autofill__input-wrapper">
-                    <input type="text" value={value} onChange={this.handleOnChangeInput} onDoubleClick={this.findCoincedents} className="autofill__input" />
+                    <input type="text" placeholder={placeholder} name={name} value={value} onChange={this.handleOnChangeInput} onDoubleClick={this.findCoincedents} className="autofill__input" />
                     {value ? <div className="autofill__close" onClick={this.handleClearClick}>
                     </div>: null}
                 </div>

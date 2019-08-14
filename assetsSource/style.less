@@ -1,6 +1,10 @@
 .autofill {
     display: inline-block;
     position: relative;
+    &_disabled {
+        pointer-events: none;
+        background-color: #bababa;
+    }
     &__input {
         padding: 0 20px 0 10px;
         height: 40px;
