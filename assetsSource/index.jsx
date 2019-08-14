@@ -8,8 +8,8 @@ class Autofill extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.value,
-            options: props.options,
+            value: props.value || '',
+            options: props.options || [],
             selectedId: null,
         };
         this.autofill = React.createRef();
@@ -122,11 +122,12 @@ class Autofill extends Component {
         document.removeEventListener('click');
     };
     render() {
-        const {value='', options=[], className='', placeholder='', isDisabled=false, name=''} = this.state;
+        const {value='', options=[]} = this.state;
+        const {className='', placeholder='', isDisabled=false, name=''} = this.props;
         return (
-            <div className={`autofill ${className} ${isDisabled ? 'autofill__disabled': ''}`}  ref={this.autofill}>
+            <div className={`autofill ${className}  ${isDisabled ? 'autofill_disabled': ''}`}  ref={this.autofill}>
                 <div className="autofill__input-wrapper">
-                    <input type="text" placeholder={placeholder} name={name} value={value} onChange={this.handleOnChangeInput} onDoubleClick={this.findCoincedents} className="autofill__input" />
+                    <input type="text" placeholder={placeholder} name={name} value={value} onChange={this.handleOnChangeInput} onDoubleClick={this.findCoincedents} className={`autofill__input ${isDisabled ? 'autofill__input_disabled': ''}`} />
                     {value ? <div className="autofill__close" onClick={this.handleClearClick}>
                     </div>: null}
                 </div>
