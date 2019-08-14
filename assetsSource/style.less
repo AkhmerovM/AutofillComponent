@@ -3,7 +3,7 @@
     position: relative;
     &_disabled {
         pointer-events: none;
-        background-color: #bababa;
+        background-color: #e9e9e9;
     }
     &__input {
         padding: 0 20px 0 10px;
@@ -13,6 +13,9 @@
         border: 1px solid #aeaeae;
         &:focus {
             box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
+        &_disabled {
+            background-color: #e9e9e9;
         }
     }
     &__input-wrapper {
